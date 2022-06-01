@@ -66,6 +66,24 @@
 						{
 							_DataBuffer[i] = 0.0000;
 						}
+
+						CPVector::vector<DataType> tmp;
+						tmp.resize(_DataIndex);
+
+						for(uint8_t i = 0; i < _DataIndex; i++)
+						{
+							tmp[i] = _DataBuffer[i];
+						}
+
+						for(uint8_t i = _DataIndex; i < LastSize; i++)
+						{
+							_DataBuffer[i - _DataIndex] = _DataBuffer[i];
+						}
+
+						for(uint8_t i = 0; i < _DataIndex; i++)
+						{
+							_DataBuffer[LastSize - _DataIndex - 1] = tmp[i];
+						}
 					}
 					else
 					{
