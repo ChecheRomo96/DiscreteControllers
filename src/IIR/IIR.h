@@ -174,6 +174,15 @@
 					{
 						_InputIndex = 0;
 					}
+					
+					if(_OutputIndex < _OutputBuffer.size()-1)
+					{
+						_OutputIndex++;
+					}
+					else
+					{
+						_OutputIndex = 0;
+					}
 
 					_InputBuffer[_InputIndex] = NewData;
 
@@ -200,7 +209,7 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
-						if(i + 1  <= _OutputIndex){DataIndex = _OutputIndex - i - 1;}
+						if(i + 1  <= ){DataIndex = _OutputIndex - i - 1;}
 						else{DataIndex = Len - i + _OutputIndex - 1;}
 						
 						IIR_Index = i;
