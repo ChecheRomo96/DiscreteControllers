@@ -125,7 +125,7 @@
 					return _ProccesedData;
 				}
 
-				CPVector::std::vector<DataType>& ProcessBuffer(const CPVector& DataIn, CPVector& DataOut)
+				CPVector::vector<DataType>& ProcessBuffer(const CPVector::vector<DataType>& DataIn, CPVector::vector<DataType>& DataOut)
 				{
 					DataOut.resize(DataIn.size());
 					InitializeBuffer();
