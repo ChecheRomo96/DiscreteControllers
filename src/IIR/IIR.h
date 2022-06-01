@@ -85,49 +85,77 @@
 					_InputBuffer.resize(_NumCoefficients.size());
 					_OutputBuffer.resize(_DenCoefficients.size());
 
-					if(LastSize>0)
+					if(LastNumSize>0)
 					{
-						for(uint8_t i = LastSize; i < _DataBuffer.size(); i++)
+						for(uint8_t i = LastNumSize; i < _InputBuffer.size(); i++)
 						{
-							_DataBuffer[i] = 0.0000;
+							_InputBuffer[i] = 0.0000;
 						}
 
 						CPVector::vector<DataType> tmp;
-						tmp.resize(_DataIndex);
+						tmp.resize(_InputIndex);
 
-						for(uint8_t i = 0; i < _DataIndex; i++)
+						for(uint8_t i = 0; i < _InputIndex; i++)
 						{
-							tmp[i] = _DataBuffer[i];
+							tmp[i] = _InputBuffer[i];
 						}
 
-						for(uint8_t i = _DataIndex; i < LastSize; i++)
+						for(uint8_t i = _InputIndex; i < LastNumSize; i++)
 						{
-							_DataBuffer[i - _DataIndex] = _DataBuffer[i];
+							_InputBuffer[i - _InputIndex] = _InputBuffer[i];
 						}
 
-						for(uint8_t i = 0; i < _DataIndex; i++)
+						for(uint8_t i = 0; i < _InputIndex; i++)
 						{
-							_DataBuffer[LastSize - _DataIndex - 1] = tmp[i];
+							_InputBuffer[LastNumSize - _InputIndex - 1] = tmp[i];
 						}
-
-
-
 					}
 					else
 					{
-						InitializeBuffer();
+						InitializeInputBuffer();
+					}
+
+					if(LastDenSize>0)
+					{
+						for(uint8_t i = LastDenSize; i < _InputBuffer.size(); i++)
+						{
+							_InputBuffer[i] = 0.0000;
+						}
+
+						CPVector::vector<DataType> tmp;
+						tmp.resize(_OutputIndex);
+
+						for(uint8_t i = 0; i < _OutputIndex; i++)
+						{
+							tmp[i] = _OutputBuffer[i];
+						}
+
+						for(uint8_t i = _OutputIndex; i < LastDenSize; i++)
+						{
+							_OutputBuffer[i - _OutputIndex] = _OutputBuffer[i];
+						}
+
+						for(uint8_t i = 0; i < _OutputIndex; i++)
+						{
+							_OutputBuffer[LastDenSize - _OutputIndex - 1] = tmp[i];
+						}
+					}
+					else
+					{
+						InitializeOutputBuffer();
 					}
 				}
 
-				void InitializeBuffer()
+				void InitializeInputBuffer()
 				{	
-					//_DataIndex  = 0;
-
 					for(uint8_t i = 0; i < _InputBuffer.size(); i++)
 					{
 						_InputBuffer[i] = 0.0000;
 					}
+				}
 
+				void InitializeOutputBuffer()
+				{	
 					for(uint8_t i = 0; i < _OutputBuffer.size(); i++)
 					{
 						_OutputBuffer[i] = 0.0000;
