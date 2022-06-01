@@ -115,7 +115,7 @@
 						// y[n] =  b_k * x[n-k]
 
 						if(i <= DataIndex){DataIndex = _DataIndex - i;}
-						else{DataIndex = _DataBuffer.size() - i + DataIndex;}
+						else{DataIndex = _DataBuffer.size() - i + _DataIndex;}
 						
 						FirIndex = i;
 
