@@ -140,7 +140,7 @@
 				{
 					DataOut.resize(DataIn.size());
 					InitializeBuffer();
-					uint8_t FilterOrder = _FirCoefficients.size();
+					uint8_t FilterOrder = _FirCoefficients.size() / 2;
 
 					for (int i = 0; i < DataIn.size(); ++i)
 					{
