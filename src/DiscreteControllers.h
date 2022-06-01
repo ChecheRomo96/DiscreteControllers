@@ -21,6 +21,7 @@
 		void Update(uint64_t CurrentTime);
 	}
 
-	#include "FIR/FIR.h"        
+	#include "FIR/FIR.h"  
+	#include "IIR/IIR.h"        
 
 #endif//DISCRETE_CONTROLLERS_H

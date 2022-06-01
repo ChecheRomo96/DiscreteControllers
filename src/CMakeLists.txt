@@ -11,6 +11,7 @@ list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/DiscreteControllers_BuildSe
 
 # Add Subdirectories
 add_subdirectory(FIR)
+add_subdirectory(IIR)
 
 # Create the DiscreteControllers library (STATIC is not justified tho) and include the directories needed to compile
 add_library(DiscreteControllers INTERFACE)

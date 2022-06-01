@@ -11,7 +11,7 @@
 		{
 			private:
 		
-				CPVector::vector<double> _FirCoefficients;
+				CPVector::vector<double> _Coefficients;
 				CPVector::vector<DataType> _DataBuffer;
 				uint8_t _DataIndex;
 				DataType _ProccesedData;
@@ -33,24 +33,24 @@
 
 				FIR& operator= (const FIR& Rhs)
 				{
-					_FirCoefficients = Rhs.FirCoefficients();
+					_Coefficients = Rhs.FirCoefficients();
 					_DataBuffer = Rhs.DataBuffer();
 					_DataIndex = Rhs.DataIndex();
 					return (*this);
 				}
 
-				const CPVector::vector<double>& FirCoefficients()
+				const CPVector::vector<double>& Coefficients()
 				{
-					return _FirCoefficients;
+					return _Coefficients;
 				}
 
 				void SetCoefficients(const CPVector::vector<double>& FirCoefficients)
 				{
-					_FirCoefficients = FirCoefficients;
+					_Coefficients = FirCoefficients;
 
 					uint8_t LastSize = _DataBuffer.size();
 
-					_DataBuffer.resize(_FirCoefficients.size());
+					_DataBuffer.resize(_Coefficients.size());
 
 					if(LastSize>0)
 					{
@@ -119,7 +119,7 @@
 					_ProccesedData = 0;
 
 					uint8_t DataIndex, FirIndex;
-					uint8_t FilterOrder = _FirCoefficients.size();
+					uint8_t FilterOrder = _Coefficients.size();
 
 					for(uint8_t i = 0; i < FilterOrder; i++)
 					{
@@ -130,7 +130,7 @@
 						
 						FirIndex = i;
 
-						_ProccesedData += _DataBuffer[DataIndex] * _FirCoefficients[FirIndex];
+						_ProccesedData += _DataBuffer[DataIndex] * _Coefficients[FirIndex];
 					}
 
 					return _ProccesedData;
@@ -140,13 +140,13 @@
 				{
 					DataOut.resize(DataIn.size());
 					InitializeBuffer();
-					uint8_t FilterOrder = _FirCoefficients.size() / 2;
+					uint8_t Delay = _Coefficients.size() / 2;
 
 					for (int i = 0; i < DataIn.size(); ++i)
 					{
-						if(i >= FilterOrder)
+						if(i >= Delay)
 						{
-							DataOut[i - FilterOrder] = Update(DataIn[i]);
+							DataOut[i - Delay] = Update(DataIn[i]);
 						}
 						else
 						{
@@ -154,9 +154,9 @@
 						}
 					}
 
-					for(int i = 0; i < FilterOrder; i++)
+					for(int i = 0; i < Delay; i++)
 					{
-						DataOut[DataOut.size() - FilterOrder + i] = Update(0);
+						DataOut[DataOut.size() - Delay + i] = Update(0);
 					}
 
 					InitializeBuffer();
