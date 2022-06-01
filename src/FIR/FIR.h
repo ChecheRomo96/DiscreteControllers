@@ -48,15 +48,7 @@
 				{
 					_FirCoefficients = FirCoefficients;
 
-					uint8_t LastSize = 0;
-					if(_DataBuffer.size() > 1)
-					{
-						LastSize = _FirCoefficients.size();
-						for(uint8_t i = 0; i < LastSize; i++)
-						{
-							_DataBuffer.swap(0+i,_DataIndex+1+i);
-						}
-					}
+					uint8_t LastSize = _DataBuffer.size();
 
 					_DataBuffer.resize(_FirCoefficients.size());
 
@@ -133,7 +125,7 @@
 						// y[n] =  b_k * x[n-k]
 
 						if(i <= DataIndex){DataIndex = _DataIndex - i;}
-						else{DataIndex = _DataBuffer.size() - i + _DataIndex;}
+						else{DataIndex = _FirCoefficients.size() - i + _DataIndex;}
 						
 						FirIndex = i;
 
