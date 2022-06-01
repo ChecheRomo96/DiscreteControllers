@@ -37,8 +37,10 @@
 				{
 					_NumCoefficients = Rhs.NumCoefficients();
 					_DenCoefficients = Rhs.DenCoefficients();
-					_DataBuffer = Rhs.DataBuffer();
-					_DataIndex = Rhs.DataIndex();
+					_InputBuffer = Rhs.InputBuffer();
+					_OutputBuffer = Rhs.OutputBuffer();
+					_InputIndex = Rhs.InputIndex();
+					_OutputIndex = Rhs.OutputIndex();
 					return (*this);
 				}
 
@@ -62,9 +64,14 @@
 					return _OutputBuffer;
 				}
 
-				const uint8_t DataIndex()
+				const uint8_t InputIndex()
 				{
-					return _DataIndex;
+					return _InputIndex;
+				}
+
+				const uint8_t OutputIndex()
+				{
+					return _OutputIndex;
 				}
 
 				void SetCoefficients(const CPVector::vector<double>& Num, const CPVector::vector<double>& Den)
