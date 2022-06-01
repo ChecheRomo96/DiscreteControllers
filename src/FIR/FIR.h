@@ -96,13 +96,13 @@
 
 				DataType Update(const DataType NewData)
 				{
-					if(_DataIndex > 0)
+					if(_DataIndex < _DataBuffer.size()-1)
 					{
-						_DataIndex = (_DataIndex--);
+						_DataIndex++;
 					}
 					else
 					{
-						_DataIndex = _DataBuffer.size()-1;
+						_DataIndex = 0;
 					}
 
 					_DataBuffer[_DataIndex] = NewData;
@@ -114,9 +114,9 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
-						DataIndex = _DataIndex + i;
-						DataIndex %= _DataBuffer.size();
-
+						if(i <= DataIndex){DataIndex = _DataIndex - i;}
+						else{DataIndex = _DataBuffer.size() - i + DataIndex;}
+						
 						FirIndex = i;
 
 						_ProccesedData += _DataBuffer[DataIndex] * _FirCoefficients[FirIndex];
