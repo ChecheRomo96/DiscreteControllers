@@ -128,7 +128,7 @@
 
 					uint8_t DataIndex, FirIndex;
 
-					for(uint8_t i = 0; i < _DataBuffer.size(); i++)
+					for(uint8_t i = 0; i < _FirCoefficients.size(); i++)
 					{
 						// y[n] =  b_k * x[n-k]
 
