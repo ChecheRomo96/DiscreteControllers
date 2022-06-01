@@ -191,7 +191,7 @@
 						
 						IIR_Index = i;
 
-						_OutputBuffer[_OutputIndex] += _InputIndex[DataIndex] * _NumCoefficients[IIR_Index];
+						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[IIR_Index];
 					}
 
 					Len = _DenCoefficients.size();
