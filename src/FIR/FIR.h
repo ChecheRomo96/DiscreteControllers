@@ -144,8 +144,6 @@
 
 					for (int i = 0; i < DataIn.size(); ++i)
 					{
-						
-
 						if(i >= FilterOrder)
 						{
 							DataOut[i - FilterOrder] = Update(DataIn[i]);
@@ -162,6 +160,8 @@
 					}
 
 					InitializeBuffer();
+
+					return DataOut; 
 				}
 		};
 	}
