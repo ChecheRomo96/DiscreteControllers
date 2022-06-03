@@ -12,7 +12,7 @@ void DiscreteControllers::Timing::Start()
 
 void DiscreteControllers::Timing::Start(uint64_t(&ClockUpdate)(), uint8_t TimeBase)
 {
-	_ClockUpdate = 0;
+	_ClockUpdate = ClockUpdate;
 	ClockTimeBase = TimeBase;
 }
 
