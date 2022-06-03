@@ -11,12 +11,12 @@
 			static constexpr uint8_t TimeBase_Milliseconds = 1u;
 			static constexpr uint8_t TimeBase_Microseconds = 2u;
 
-			extern uint32_t(*_ClockUpdate)();
+			extern uint64_t(*_ClockUpdate)();
 			extern uint8_t ClockTimeBase;
-			extern uint32_t CurrentTime;
+			extern uint64_t CurrentTime;
 
-			void Start(uint32_t(&ClockUpdate)(), uint8_t TimeBase);
-			uint32_t UpdateClock();
+			void Start(uint64_t(&ClockUpdate)(), uint8_t TimeBase);
+			uint64_t UpdateClock();
 		}
 	}
 
