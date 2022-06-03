@@ -2,11 +2,8 @@
 
 void DiscreteControllers::Start()
 {
-	#if defined ARDUINO
-		DiscreteControllers::Timing::Start(micros, DiscreteControllers::Timing::TimeBase_Microseconds);
-	#else
-		DiscreteControllers::Timing::Start();
-	#endif
+	DiscreteControllers::Timing::Start();
+	
 }
 
 void DiscreteControllers::Update()
