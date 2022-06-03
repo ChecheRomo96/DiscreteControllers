@@ -1,6 +1,6 @@
 #include "Timing.h"
 
-uint64_t(*DiscreteControllers::Timing::_ClockUpdate)()
+uint64_t(*DiscreteControllers::Timing::_ClockUpdate)();
 uint8_t DiscreteControllers::Timing::ClockTimeBase;
 uint64_t DiscreteControllers::Timing::CurrentTime;
 
