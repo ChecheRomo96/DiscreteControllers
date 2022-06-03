@@ -4,8 +4,45 @@
     #include <DiscreteControllers_BuildSettings.h>
 	#include "../UpdateManager/UpdateManager.h"
 
-    namespace PID
+    namespace DiscreteControllers
     {
+
+    	template <class DataType>
+    	class DataRange
+    	{
+	    	private:
+
+	    		DataType _Min;
+	    		DataType _Max;
+
+	    	public:
+
+	    		DataRange()
+	    		{
+	    			_Min = 0;
+	    			_Max = 0;
+	    		}
+
+	    		DataRange(const DataType& Min, const DataType& Max)
+	    		{
+	    			_Min = Min;
+	    			_Max = Max;
+	    		}
+
+    			template <class XDataType>
+	    		DataType Interpolate(const DataRange<XDataType>& XRange, const XDataType& eval )
+	    		{
+	    			return Interpolate(XRange.Min(), XRange.Max(), eval);
+	    		}
+
+    			template <class XDataType>
+	    		DataType Interpolate(const XDataType& Min, const XDataType& Max, const XDataType& eval )
+	    		{
+	    			return Min + ((eval-Min)*(Max()-Min()))/(Max-Min);
+	    		}
+
+    	}
+
 
     	template <class DataType>
     	class InputSignal
@@ -31,6 +68,10 @@
 	    		uint64_t _LastUpdateTime;
 	    		uint8_t _Clock_Timebase;
 
+	    		DataType _Output;
+	    		DataRange<DataType> _OutputRange;
+	    		DataRange<DataType> _InputRange;
+
 	    	public:
 	    		Signal()
 	    		{
@@ -38,20 +79,59 @@
 
 	    		}
 
-	    		Signal(DataType(&Update)(), void(&Callback)() = NULL)
+	    		Signal(DataType InMin, DataType InMax, DataType OutMin, DataType OutMax, DataType(&Update)(), void(&Callback)() = NULL)
 	    		{
 	    			_Update = Update;
 	    			_UpdateCallback = Callback;
+	    			_InputRange = InputRange;
+	    			_OutputRange = OutputRange;
+	    		}
+
+
+	    		DataType InMin()
+	    		{
+	    			return _InMin;
+	    		}
+
+	    		DataType InMax()
+	    		{
+	    			return _InMax;
+	    		}
+
+	    		DataType OutMin()
+	    		{
+	    			return _OutMin;
+	    		}
+
+	    		DataType OutMax()
+	    		{
+	    			return _OutMax;
 	    		}
 
 	    		operator=(const Signal& rhs)
 	    		{
+	    			_Update = rhs.UpdatePointer();
+	    			_UpdateCallback = rhs.CallbackPointer();
+	    			_InMin = InMin();
+	    			_InMax = InMax();
+	    			_OutMin = OutMin();
+	    			_OutMax = OutMax();
 
+	    		}
+
+	    		DataType(&)() UpdatePointer() const
+	    		{
+	    			return _Update;
+	    		}
+
+	    		void(&)() CallbackPointer() const
+	    		{
+	    			return _UpdateCallback;
 	    		}
 
 	    		void SetSampleFrequency(float Fs)
 	    		{
-	    			SetSamplePeriod(1.0/Fs)
+	    			SetSamplePeriod(1.0/Fs); 
 	    		}
 
 	    		float SampleFrequency()
