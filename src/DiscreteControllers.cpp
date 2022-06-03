@@ -3,7 +3,7 @@
 void DiscreteControllers::Start()
 {
 	#if defined ARDUINO
-		DiscreteControllers::Timing::Start(micros, Timing::Timebase_Microseconds);
+		DiscreteControllers::Timing::Start(micros, DiscreteControllers::Timing::Timebase_Microseconds);
 	#else
 		DiscreteControllers::Timing::Start();
 	#endif
