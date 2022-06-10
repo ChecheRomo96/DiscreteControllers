@@ -10,7 +10,6 @@ list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/DiscreteControllers_UserSet
 list( APPEND HEADERS_LIST "${CMAKE_CURRENT_LIST_DIR}/DiscreteControllers_BuildSettings.h")
 
 # Add Subdirectories
-add_subdirectory(Timing)
 add_subdirectory(FIR)
 add_subdirectory(IIR)
 

@@ -13,9 +13,9 @@
 #include "DiscreteControllers_BuildSettings.h"                                                                                      
 #include "DiscreteControllers_UserSetup.h"                                                                                      
 
-	#include "Timing/Timing.h"   
 	#include "FIR/FIR.h"  
 	#include "IIR/IIR.h"        
+	#include "PID/PID.h"        
 
 	namespace DiscreteControllers
 	{
