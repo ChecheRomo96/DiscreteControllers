@@ -99,6 +99,16 @@
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
+	    		const double Fs() const
+	    		{
+	    			return _Fs;
+	    		}
+
+	    		const double Ts() const
+	    		{
+	    			return 1.0/_Fs;
+	    		}
+
 	    		void SetSamplingPeriod(double Ts, bool UpdateTaps = 0)
 	    		{
 	    			_Fs = 1.0/Ts;
