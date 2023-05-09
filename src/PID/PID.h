@@ -62,6 +62,7 @@
 	    		double _Kp;
 	    		double _Ki;
 	    		double _Kd;
+	    		double _Fs;
 
 	    		bool _UpdateMode;
 	    		uint64_t _LastUpdateTime;
@@ -75,9 +76,11 @@
 	        		_Kd = 0;
 	        	}
 
-	    		PID(double Kp, double Ki, double Kd)
+	    		PID(double Kp, double Ki, double Kd, double Ts)
 	    		{
-	    			SetGains(Kp, Ki, Kd);
+	    			SetSamplingPeriod(Ts, 0);
+	    			SetGains(Kp, Ki, Kd, 0);
+					RecalculateTaps();
 	    		}
 
 	    		PID& operator=(const PID& rhs)
@@ -87,34 +90,48 @@
 	    			return (*this);
 	    		}
 
-	    		void SetGains(double Kp, double Ki, double Kd)
+	    		void SetGains(double Kp, double Ki, double Kd, bool UpdateTaps = 0)
+	    		{
+	    			SetKp(Kp,0);
+	    			SetKi(Ki,0);
+	    			SetKd(Kd,0);
+
+					if(UpdateTaps){RecalculateTaps();}
+	    		}
+
+	    		void SetSamplingPeriod(double Ts, bool UpdateTaps = 0)
+	    		{
+	    			_Fs = 1.0/Ts;
+	    			
+					if(UpdateTaps){RecalculateTaps();}
+	    		}
+
+	    		void SetSamplingFrequency(double Fs, bool UpdateTaps = 0)
+	    		{
+	    			_Fs = Fs;
+	    			
+					if(UpdateTaps){RecalculateTaps();}
+	    		}
+
+	    		void SetKp(double Kp, bool UpdateTaps = 0)
 	    		{
 	    			_Kp = Kp;
-	    			_Ki = Ki;
-	    			_Kd = Kd;
 
-					RecalculateTaps();
+					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
-	    		void SetKp(double Kp)
+	    		void SetKi(double Ki, bool UpdateTaps = 0)
 	    		{
-	    			_Kp = Kp;
+	    			_Ki = Ki * (Ts / 2);
 
-					RecalculateTaps();
+					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
-	    		void SetKi(double Ki)
+	    		void SetKd(double Kd, bool UpdateTaps = 0)
 	    		{
-	    			_Ki = Ki;
+	    			_Kd = Kd * (1.0/Ts);
 
-					RecalculateTaps();
-	    		}
-
-	    		void SetKd(double Kd)
-	    		{
-	    			_Kd = Kd;
-
-					RecalculateTaps();
+					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
 	    		void RecalculateTaps()
