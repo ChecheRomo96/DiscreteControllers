@@ -2,7 +2,6 @@
 
 void DiscreteControllers::Start()
 {
-	DiscreteControllers::Timing::Start();
 	
 }
 

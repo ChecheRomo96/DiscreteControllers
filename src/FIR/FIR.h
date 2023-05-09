@@ -33,7 +33,7 @@
 
 				FIR& operator= (const FIR& Rhs)
 				{
-					_Coefficients = Rhs.FirCoefficients();
+					_Coefficients = Rhs.Coefficients();
 					_DataBuffer = Rhs.DataBuffer();
 					_DataIndex = Rhs.DataIndex();
 					return (*this);
