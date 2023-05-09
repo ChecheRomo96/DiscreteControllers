@@ -99,11 +99,6 @@
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
-	    		const double Fs() const
-	    		{
-	    			return _Fs;
-	    		}
-
 	    		const double Ts() const
 	    		{
 	    			return 1.0/_Fs;
@@ -111,9 +106,17 @@
 
 	    		void SetSamplingPeriod(double Ts, bool UpdateTaps = 0)
 	    		{
+
+	    			auto tmp[] = {Kp(), Ki(), Kd()};
+
 	    			_Fs = 1.0/Ts;
-	    			
-					if(UpdateTaps){RecalculateTaps();}
+
+	    			SetGains(tmp[0],tmp[1],tmp[2], UpdateTaps);
+	    		}
+
+	    		const double Fs() const
+	    		{
+	    			return _Fs;
 	    		}
 
 	    		void SetSamplingFrequency(double Fs, bool UpdateTaps = 0)
@@ -123,6 +126,11 @@
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
+	    		const double Kp() const
+	    		{
+	    			return _Kp;
+	    		}
+
 	    		void SetKp(double Kp, bool UpdateTaps = 0)
 	    		{
 	    			_Kp = Kp;
@@ -130,16 +138,26 @@
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
+	    		const double Ki() const
+	    		{
+	    			return _Ki / ( Ts() / 2.0);
+	    		}
+
 	    		void SetKi(double Ki, bool UpdateTaps = 0)
 	    		{
-	    			_Ki = Ki * (Ts / 2);
+	    			_Ki = Ki * ( Ts() / 2.0);
 
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
+	    		const double Kd() const
+	    		{
+	    			return _Kd / Fs();
+	    		}
+
 	    		void SetKd(double Kd, bool UpdateTaps = 0)
 	    		{
-	    			_Kd = Kd * (1.0/Ts);
+	    			_Kd = Kd * Fs();
 
 					if(UpdateTaps){RecalculateTaps();}
 	    		}

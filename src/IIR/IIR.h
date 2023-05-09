@@ -166,6 +166,8 @@
 
 				DataType Update(const DataType NewData)
 				{
+					// Increase input and output indices
+
 					if(_InputIndex < _InputBuffer.size()-1)
 					{
 						_InputIndex++;
@@ -184,11 +186,16 @@
 						_OutputIndex = 0;
 					}
 
-					_InputBuffer[_InputIndex] = NewData;
+					// Store new data and init output
 
+					_InputBuffer[_InputIndex] = NewData;
 					_OutputBuffer[_OutputIndex] = 0;
 
-					uint8_t DataIndex, IIR_Index;
+
+
+					// y[n] =  a_k * in[n-k] + b_m * out[n-m]
+
+					uint8_t DataIndex, CoefficientIndex;
 					uint8_t Len = _NumCoefficients.size();
 
 					for(uint8_t i = 0; i < Len; i++)
@@ -198,9 +205,9 @@
 						if(i <= _InputIndex){DataIndex = _InputIndex - i;}
 						else{DataIndex = Len - i + _InputIndex;}
 						
-						IIR_Index = i;
+						CoefficientIndex = i;
 
-						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[IIR_Index];
+						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
 					}
 
 					Len = _DenCoefficients.size();
@@ -212,9 +219,9 @@
 						if(i + 1  <= _OutputIndex){DataIndex = _OutputIndex - i - 1;}
 						else{DataIndex = Len - i + _OutputIndex - 1;}
 						
-						IIR_Index = i;
+						CoefficientIndex = i;
 
-						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[IIR_Index];
+						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[CoefficientIndex];
 					}
 
 					return _OutputBuffer[_OutputIndex];
