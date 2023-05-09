@@ -47,7 +47,7 @@
  	namespace DiscreteControllers
     {
     	extern uint64_t(*_GetTime)(void);
-    	void Setup(uint64_t(&GetTime)(void) = NULL);
+    	void Setup(uint64_t(&GetTime)(void) = (void*)NULL);
 
         template <class DataType>
         class  PID
