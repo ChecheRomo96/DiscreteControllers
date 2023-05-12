@@ -105,7 +105,7 @@
 	    		void SetSamplingPeriod(double Ts, bool UpdateTaps = 0)
 	    		{
 
-	    			auto tmp[] = {Kp(), Ki(), Kd()};
+	    			double tmp[] = {Kp(), Ki(), Kd()};
 
 	    			_Fs = 1.0/Ts;
 
