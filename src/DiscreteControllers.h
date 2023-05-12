@@ -19,10 +19,13 @@
 
 	namespace DiscreteControllers
 	{
-		void Start();
+    	extern uint64_t(*_GetMs)(void);
+
+    	void Start();
+    	void Start( uint64_t(&GetMs)(void) );
 		
 		void Update();
-		void Update(uint64_t CurrentTime);
+		void Update(uint64_t Milliseconds);
 	}
 
 #endif//DISCRETE_CONTROLLERS_H
