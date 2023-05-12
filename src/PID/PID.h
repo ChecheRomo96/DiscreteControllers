@@ -191,7 +191,7 @@
 	    		{
 	    			return _Filter.Update(Input);
 	    		}
-        }
+        };
     }
 
 #endif//PID_CONTROLLER_H
