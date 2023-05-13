@@ -12,23 +12,32 @@
 	//  Gd(s) = Kp + --------- + (Kd * s)
 	//                   s
 	//
-	//                    Ts    (z+1)		 1     (z-1)
-	//  Gd(z) = Kp + Ki ----- ------- + Kd ----- ---------
-	//                    2     (z-1)		 Ts      z
+	//                       (z)		 1     (z-1)
+	//  Gd(z) = Kp + Ki Ts ------- + Kd ----- ---------
+	//                      (z-1)		 Ts      z
 	//
-	//   							 Ts 				   1
-	//  kp' = kp           ki'= ki ------        kd' = kd ---- = kd Fs
-	//							     2					   Ts
 	//
-	//  z^-2 [kd'] + z^-1 [-kp'+ki'-2kd'] + z^0 [kp'+ki'+kd']     Out(z)
+	//  z^-2 [Kd/Ts] + z^-1 [-Kp-2(Kd/Ts)] + z^0 [Kp + Ki Ts + (Kd/Ts)]     Out(z)
+	//  ---------------------------------------------------------------- = --------
+	//                z^-1 [0] +z^-1 [-1] + z^0 [1]                		     In(z)
+	//
+	//
+	//   							 				   1
+	//  Kp' = Kp           Ki'= Ki Ts        Kd' = Kd ---- = Kd Fs
+	//							    				   Ts
+	//
+	//
+	//    z^-2 [Kd'] + z^-1 [-Kp'-2Kd'] + z^0 [Kp'+KiTs'+Kd']       Out(z)
 	//  ------------------------------------------------------ = --------
 	//                z^-1 [0] +z^-1 [-1] + z^0 [1]                In(z)
+	//
+	//
 	//
 	// Variable Substitution: 
 	//
 	//      a0 = Kd'
-	//		a1 = -kp'+ki'-2kd'
-	//		a2 = kp'+ki'+kd'
+	//		a1 = -Kp'+Ki'-2Kd'
+	//		a2 = Kp'+Ki'+Kd'
 	//
 	//      b0 = 0
 	//		b1 = -1
@@ -138,19 +147,19 @@
 
 	    		const double Ki() const
 	    		{
-	    			return _Ki / ( Ts() / 2.0);
+	    			return _Ki * Ts();
 	    		}
 
 	    		void SetKi(double Ki, bool UpdateTaps = 0)
 	    		{
-	    			_Ki = Ki * ( Ts() / 2.0);
+	    			_Ki = Ki * Ts();
 
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
 	    		const double Kd() const
 	    		{
-	    			return _Kd / Fs();
+	    			return _Kd * Fs();
 	    		}
 
 	    		void SetKd(double Kd, bool UpdateTaps = 0)
@@ -163,7 +172,7 @@
 	    		void RecalculateTaps()
 	    		{
 	    			double PID_NTaps[] = {_Kd, -_Kp-(2*_Kd), _Kp+_Ki+_Kd};
-  					double PID_DTaps[] = {-1, 1};
+  					double PID_DTaps[] = {0, -1, 1};
 
 					CPVector::vector<double> PID_NumTaps;
 
