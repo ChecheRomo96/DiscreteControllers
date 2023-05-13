@@ -163,7 +163,7 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
-						if(CoefficientIndex < Offset)
+						if(CoefficientIndex < _OutputIndex)
 						{
 							DataIndex = (Len - _OutputIndex) + CoefficientIndex;
 						}
