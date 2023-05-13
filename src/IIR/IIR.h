@@ -144,7 +144,7 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
-						if(CoefficientIndex < InputIndex)
+						if(CoefficientIndex < _InputIndex)
 						{
 							DataIndex = (Len - _InputIndex) + CoefficientIndex;
 						}
@@ -161,8 +161,6 @@
 					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len-1; CoefficientIndex++)
 					{
 						// y[n] =  b_k * x[n-k]
-
-						uint8_t Offset = Len - _InputIndex - 1;
 
 						if(CoefficientIndex < Offset)
 						{
