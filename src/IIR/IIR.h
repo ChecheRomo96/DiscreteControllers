@@ -144,6 +144,7 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
+
 						if(CoefficientIndex < _InputIndex)
 						{
 							DataIndex = (Len - _InputIndex) + CoefficientIndex;
