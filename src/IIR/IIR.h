@@ -88,6 +88,8 @@
 
 				void InitializeInputBuffer()
 				{	
+					_InputIndex = _InputBuffer.size()-1;
+					
 					for(uint8_t i = 0; i < _InputBuffer.size(); i++)
 					{
 						_InputBuffer[i] = 0.0000;
@@ -96,6 +98,8 @@
 
 				void InitializeOutputBuffer()
 				{	
+					_OutputIndex = _OutputBuffer.size()-1;
+
 					for(uint8_t i = 0; i < _OutputBuffer.size(); i++)
 					{
 						_OutputBuffer[i] = 0.0000;
