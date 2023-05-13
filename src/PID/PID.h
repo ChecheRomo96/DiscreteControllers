@@ -17,9 +17,9 @@
 	//                      (z-1)		 Ts      z
 	//
 	//
-	//  z^-2 [Kd/Ts] + z^-1 [-Kp-2(Kd/Ts)] + z^0 [Kp + Ki Ts + (Kd/Ts)]     Out(z)
+	//  z^-2 [Kd / Ts] + z^-1 [-Kp + Ki - 2(Kd/Ts)] + z^0 [Kp + (Kd/Ts)]    Out(z)
 	//  ---------------------------------------------------------------- = --------
-	//                z^-1 [0] +z^-1 [-1] + z^0 [1]                		     In(z)
+	//                z^-2 [0] + z^-1 [-1] + z^0 [1]                	    In(z)
 	//
 	//
 	//   							 				   1
@@ -27,17 +27,17 @@
 	//							    				   Ts
 	//
 	//
-	//    z^-2 [Kd'] + z^-1 [-Kp'-2Kd'] + z^0 [Kp'+KiTs'+Kd']       Out(z)
+	//    z^-2 [Kd'] + z^-1 [-Kp'+Ki'-2Kd'] + z^0 [Kp'+ Kd']       Out(z)
 	//  ------------------------------------------------------ = --------
-	//                z^-1 [0] +z^-1 [-1] + z^0 [1]                In(z)
+	//                z^-2 [0] + z^-1 [-1] + z^0 [1]                In(z)
 	//
 	//
 	//
 	// Variable Substitution: 
 	//
 	//      a0 = Kd'
-	//		a1 = -Kp'+Ki'-2Kd'
-	//		a2 = Kp'+Ki'+Kd'
+	//		a1 = -Kp' + Ki' - 2Kd'
+	//		a2 = Kp' + Ki' + Kd'
 	//
 	//      b0 = 0
 	//		b1 = -1
@@ -171,16 +171,13 @@
 
 	    		void RecalculateTaps()
 	    		{
-	    			double PID_NTaps[] = {_Kd, -_Kp-(2*_Kd), _Kp+_Ki+_Kd};
-  					double PID_DTaps[] = {0, -1, 1};
-
 					CPVector::vector<double> PID_NumTaps;
 
 					PID_NumTaps.resize(3);
 
 					PID_NumTaps[0] = _Kd;
-					PID_NumTaps[1] = -_Kp-(2*_Kd);
-					PID_NumTaps[2] = _Kp+_Ki+_Kd;
+					PID_NumTaps[1] = -_Kp+_Ki-(2*_Kd);
+					PID_NumTaps[2] = _Kp+_Kd;
 
 					CPVector::vector<double> PID_DenTaps;
 
