@@ -79,71 +79,11 @@
 					_NumCoefficients = Num;
 					_DenCoefficients = Den;
 
-					uint8_t LastNumSize = _InputBuffer.size();
-					uint8_t LastDenSize = _OutputBuffer.size();
-
 					_InputBuffer.resize(_NumCoefficients.size());
 					_OutputBuffer.resize(_DenCoefficients.size());
 
-					if(LastNumSize>0)
-					{
-						for(uint8_t i = LastNumSize; i < _InputBuffer.size(); i++)
-						{
-							_InputBuffer[i] = 0.0000;
-						}
-
-						CPVector::vector<DataType> tmp;
-						tmp.resize(_InputIndex);
-
-						for(uint8_t i = 0; i < _InputIndex; i++)
-						{
-							tmp[i] = _InputBuffer[i];
-						}
-
-						for(uint8_t i = _InputIndex; i < LastNumSize; i++)
-						{
-							_InputBuffer[i - _InputIndex] = _InputBuffer[i];
-						}
-
-						for(uint8_t i = 0; i < _InputIndex; i++)
-						{
-							_InputBuffer[LastNumSize - _InputIndex - 1] = tmp[i];
-						}
-					}
-					else
-					{
-						InitializeInputBuffer();
-					}
-
-					if(LastDenSize>0)
-					{
-						for(uint8_t i = LastDenSize; i < _InputBuffer.size(); i++)
-						{
-							_InputBuffer[i] = 0.0000;
-						}
-
-						CPVector::vector<DataType> tmp;
-						tmp.resize(_OutputIndex);
-
-						for(uint8_t i = 0; i < _OutputIndex; i++)
-						{
-							tmp[i] = _OutputBuffer[i];
-						}
-
-						for(uint8_t i = _OutputIndex; i < LastDenSize; i++)
-						{
-							_OutputBuffer[i - _OutputIndex] = _OutputBuffer[i];
-						}
-
-						for(uint8_t i = 0; i < _OutputIndex; i++)
-						{
-							_OutputBuffer[LastDenSize - _OutputIndex - 1] = tmp[i];
-						}
-					}
-					else
-					{
-						InitializeOutputBuffer();
-					}
+					InitializeInputBuffer();
+					InitializeOutputBuffer();
 				}
 
 				void InitializeInputBuffer()
@@ -191,38 +131,51 @@
 					_InputBuffer[_InputIndex] = NewData;
 					_OutputBuffer[_OutputIndex] = 0;
 
-
-
 					// y[n] =  a_k * in[n-k] + b_m * out[n-m]
 
 					uint8_t DataIndex, CoefficientIndex;
 					uint8_t Len = _NumCoefficients.size();
 
-					for(uint8_t i = 0; i < Len; i++)
+					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len; CoefficientIndex++)
 					{
 						// y[n] =  b_k * x[n-k]
 
-						if(i <= _InputIndex){DataIndex = _InputIndex - i;}
-						else{DataIndex = Len - i + _InputIndex;}
-						
-						CoefficientIndex = i;
+						uint8_t Offset = Len - _InputIndex - 1;
 
+						if(CoefficientIndex < Offset)
+						{
+							DataIndex = Offset + CoefficientIndex - 1;
+						}
+						else
+						{
+							DataIndex = CoefficientIndex - Offset;
+						}
+						
 						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
 					}
 
 					Len = _DenCoefficients.size();
 
-					for(uint8_t i = 0; i < Len-1; i++)
+					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len-1; CoefficientIndex++)
 					{
 						// y[n] =  b_k * x[n-k]
 
-						if(i + 1  <= _OutputIndex){DataIndex = _OutputIndex - i - 1;}
-						else{DataIndex = Len - i + _OutputIndex - 1;}
+						uint8_t Offset = Len - _InputIndex - 1;
+
+						if(CoefficientIndex < Offset)
+						{
+							DataIndex = Offset + CoefficientIndex - 1;
+						}
+						else
+						{
+							DataIndex = CoefficientIndex - Offset;
+						}
 						
-						CoefficientIndex = i;
 
 						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[CoefficientIndex];
 					}
+
+					OutputBuffer[_OutputIndex] *= (1.0/_DenCoefficients[_DenCoefficients.size()-1]);
 
 					return _OutputBuffer[_OutputIndex];
 				}
