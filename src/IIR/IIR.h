@@ -89,7 +89,7 @@
 				void InitializeInputBuffer()
 				{	
 					_InputIndex = _InputBuffer.size()-1;
-					
+
 					for(uint8_t i = 0; i < _InputBuffer.size(); i++)
 					{
 						_InputBuffer[i] = 0.0000;
@@ -144,15 +144,13 @@
 					{
 						// y[n] =  b_k * x[n-k]
 
-						uint8_t Offset = Len - _InputIndex - 1;
-
-						if(CoefficientIndex < Offset)
+						if(CoefficientIndex < InputIndex)
 						{
-							DataIndex = Offset + CoefficientIndex - 1;
+							DataIndex = (Len - _InputIndex) + CoefficientIndex;
 						}
 						else
 						{
-							DataIndex = CoefficientIndex - Offset;
+							DataIndex = _InputIndex + CoefficientIndex;
 						}
 						
 						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
@@ -168,11 +166,11 @@
 
 						if(CoefficientIndex < Offset)
 						{
-							DataIndex = Offset + CoefficientIndex - 1;
+							DataIndex = (Len - _OutputIndex) + CoefficientIndex;
 						}
 						else
 						{
-							DataIndex = CoefficientIndex - Offset;
+							DataIndex = _OutputIndex + CoefficientIndex;
 						}
 						
 
