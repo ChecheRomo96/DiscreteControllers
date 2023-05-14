@@ -182,45 +182,13 @@
 					PID_NumTaps[0] = -_Kd;
 					PID_NumTaps[1] = _Kp-_Ki+(2*_Kd);
 					PID_NumTaps[2] = -_Kp-_Kd;
-					
+
 					CPVector::vector<double> PID_DenTaps;
 
 					PID_DenTaps.resize(2);
 
 					PID_DenTaps[0] = 1;
 					PID_DenTaps[1] = -1;
-
-					Serial.println();
-					Serial.print("Kp = ");
-					Serial.print(Kp());
-					Serial.print(", Ki = ");
-					Serial.print(Ki());
-					Serial.print(", Kd = ");
-					Serial.println(Kd());
-
-					Serial.print("Kp' = ");
-					Serial.print(_Kp);
-					Serial.print(", Ki' = ");
-					Serial.print(_Ki);
-					Serial.print(", Kd' = ");
-					Serial.println(_Kd);
-
-					Serial.print("z^-2 [");
-					Serial.print(PID_NumTaps[0]);
-					Serial.print("] + z^-1 [");
-					Serial.print(PID_NumTaps[1]);
-					Serial.print("] + z^0 [");
-					Serial.print(PID_NumTaps[2]);
-					Serial.println("]");
-
-					Serial.println("-----------------------------------------------");
-
-					Serial.print("z^-1 [");
-					Serial.print(PID_DenTaps[0]);
-					Serial.print("] + z^0 [");
-					Serial.print(PID_DenTaps[1]);
-					Serial.println("]");
-
 
  		 			_Filter.SetCoefficients(PID_NumTaps,PID_DenTaps);
 	    		}
