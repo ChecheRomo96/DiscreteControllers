@@ -187,8 +187,8 @@
 
 					PID_DenTaps.resize(2);
 
-					PID_DenTaps[0] = -1;
-					PID_DenTaps[1] = 1;
+					PID_DenTaps[0] = 1;
+					PID_DenTaps[1] = -1;
 
  		 			_Filter.SetCoefficients(PID_NumTaps,PID_DenTaps);
 	    		}
