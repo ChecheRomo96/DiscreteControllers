@@ -179,6 +179,14 @@
 					PID_NumTaps[1] = _Kp-_Ki+(2*_Kd);
 					PID_NumTaps[2] = -_Kp-_Kd;
 
+					Serial.print("z^-2 [");
+					Serial.print(PID_NumTaps[0]);
+					Serial.print("] + z^-1 [");
+					Serial.print(PID_NumTaps[1]);
+					Serial.print("] + z^0 [");
+					Serial.print(PID_NumTaps[2]);
+					Serial.print("]");
+
 					CPVector::vector<double> PID_DenTaps;
 
 					PID_DenTaps.resize(2);
