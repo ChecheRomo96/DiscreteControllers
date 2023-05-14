@@ -159,7 +159,7 @@
 						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[_DenCoefficients.size()-CoefficientIndex-1];
 					}
 
-					//_OutputBuffer[_OutputIndex] *= (1.0/_DenCoefficients[0]);
+					_OutputBuffer[_OutputIndex] *= (1.0/_DenCoefficients[0]);
 
 					return _OutputBuffer[_OutputIndex];
 				}
