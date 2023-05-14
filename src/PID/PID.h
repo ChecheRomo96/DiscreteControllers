@@ -184,16 +184,16 @@
 					Serial.println();
 					Serial.print("Kp = ");
 					Serial.print(Kp());
-					Serial.print("Ki = ");
+					Serial.print(", Ki = ");
 					Serial.print(Ki());
-					Serial.print("Kd = ");
+					Serial.print(", Kd = ");
 					Serial.println(Kd());
 
 					Serial.print("Kp' = ");
-					Serial.print(Kp());
-					Serial.print("Ki' = ");
-					Serial.print(Ki());
-					Serial.print("Kd' = ");
+					Serial.print(_Kp);
+					Serial.print(", Ki' = ");
+					Serial.print(_Ki);
+					Serial.print(", Kd' = ");
 					Serial.println(_Kd);
 
 					Serial.print("z^-2 [");
