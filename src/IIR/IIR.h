@@ -144,6 +144,8 @@
 					{
 						// y[n] =  b_k * x[n-k]
 						DataIndex = (CoefficientIndex + _InputIndex + 1 ) % Len;
+						Serial.print(DataIndex);
+						Serial.print(", ");
 						
 						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
 					}
