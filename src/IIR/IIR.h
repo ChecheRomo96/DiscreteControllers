@@ -144,10 +144,11 @@
 					{
 						// y[n] =  b_k * x[n-k]
 						DataIndex = (CoefficientIndex + _InputIndex + 1 ) % Len;
-						Serial.print(DataIndex);
+
+						_InputBuffer[_InputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
+						Serial.print(_InputBuffer[_InputIndex]);
 						Serial.print(", ");
-						
-						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
+
 					}
 
 					Len = _DenCoefficients.size();
