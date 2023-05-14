@@ -117,10 +117,10 @@
 	    		{
 
 	    			double tmp[] = {Kp(), Ki(), Kd()};
-
 	    			_Fs = 1.0/Ts;
-
-	    			SetGains(tmp[0],tmp[1],tmp[2], UpdateTaps);
+	    			SetGains(tmp[0],tmp[1],tmp[2]);
+	    			
+					if(UpdateTaps){RecalculateTaps();}
 	    		}
 
 	    		const double Fs() const
@@ -130,7 +130,9 @@
 
 	    		void SetSamplingFrequency(double Fs, bool UpdateTaps = 0)
 	    		{
+	    			double tmp[] = {Kp(), Ki(), Kd()};
 	    			_Fs = Fs;
+	    			SetGains(tmp[0],tmp[1],tmp[2]);
 	    			
 					if(UpdateTaps){RecalculateTaps();}
 	    		}
