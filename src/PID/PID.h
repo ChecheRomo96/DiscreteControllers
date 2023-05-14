@@ -147,7 +147,7 @@
 
 	    		const double Ki() const
 	    		{
-	    			return _Ki * Ts();
+	    			return _Ki / Ts();
 	    		}
 
 	    		void SetKi(double Ki, bool UpdateTaps = 0)
@@ -159,7 +159,7 @@
 
 	    		const double Kd() const
 	    		{
-	    			return _Kd * Fs();
+	    			return _Kd / Fs();
 	    		}
 
 	    		void SetKd(double Kd, bool UpdateTaps = 0)
