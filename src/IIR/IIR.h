@@ -145,7 +145,7 @@
 						// y[n] =  b_k * x[n-k]
 						DataIndex = (CoefficientIndex + _InputIndex + 1 ) % Len;
 
-						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
+						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[_NumCoefficients.size()-CoefficientIndex-1];
 
 					}
 
@@ -156,7 +156,7 @@
 						// y[n] =  b_k * x[n-k]
 						DataIndex = (CoefficientIndex + _OutputIndex + 1 ) % Len;
 
-						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[CoefficientIndex];
+						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[_DenCoefficients.size()-CoefficientIndex-1];
 					}
 
 					_OutputBuffer[_OutputIndex] *= (1.0/_DenCoefficients[_DenCoefficients.size()-1]);
