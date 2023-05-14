@@ -187,8 +187,6 @@
 					PID_DenTaps[1] = -1;
 
  		 			_Filter.SetCoefficients(PID_NumTaps,PID_DenTaps);
- 		 			_Filter.InitializeInputBuffer();
- 		 			_Filter.InitializeOutputBuffer();
 	    		}
 
 	    		void Reset()
