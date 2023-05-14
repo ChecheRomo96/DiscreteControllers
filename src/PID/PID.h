@@ -194,7 +194,7 @@
 					Serial.print("Ki' = ");
 					Serial.print(Ki());
 					Serial.print("Kd' = ");
-					Serial.println(_Kd;
+					Serial.println(_Kd);
 
 					Serial.print("z^-2 [");
 					Serial.print(PID_NumTaps[0]);
