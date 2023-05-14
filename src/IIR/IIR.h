@@ -143,16 +143,7 @@
 					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len; CoefficientIndex++)
 					{
 						// y[n] =  b_k * x[n-k]
-
-
-						if(CoefficientIndex < _InputIndex)
-						{
-							DataIndex = (Len - _InputIndex) + CoefficientIndex;
-						}
-						else
-						{
-							DataIndex = _InputIndex + CoefficientIndex;
-						}
+						DataIndex = (CoefficientIndex + _InputIndex + 1 ) % Len;
 						
 						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
 					}
@@ -162,16 +153,7 @@
 					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len-1; CoefficientIndex++)
 					{
 						// y[n] =  b_k * x[n-k]
-
-						if(CoefficientIndex < _OutputIndex)
-						{
-							DataIndex = (Len - _OutputIndex) + CoefficientIndex;
-						}
-						else
-						{
-							DataIndex = _OutputIndex + CoefficientIndex;
-						}
-						
+						DataIndex = (CoefficientIndex + _OutputIndex + 1 ) % Len;
 
 						_OutputBuffer[_OutputIndex] -= _OutputBuffer[DataIndex] * _DenCoefficients[CoefficientIndex];
 					}
