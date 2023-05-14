@@ -81,6 +81,8 @@
 	        		_Kp = 0;
 	        		_Ki = 0;
 	        		_Kd = 0;
+
+	        		_Fs = 0.1;
 	        	}
 
 	    		PID(double Kp, double Ki, double Kd, double Ts)
@@ -179,13 +181,28 @@
 					PID_NumTaps[1] = _Kp-_Ki+(2*_Kd);
 					PID_NumTaps[2] = -_Kp-_Kd;
 
+					Serial.println();
+					Serial.print("Kp = ");
+					Serial.print(Kp());
+					Serial.print("Ki = ");
+					Serial.print(Ki());
+					Serial.print("Kd = ");
+					Serial.println(Kd());
+
+					Serial.print("Kp' = ");
+					Serial.print(Kp());
+					Serial.print("Ki' = ");
+					Serial.print(Ki());
+					Serial.print("Kd' = ");
+					Serial.println(_Kd;
+
 					Serial.print("z^-2 [");
 					Serial.print(PID_NumTaps[0]);
 					Serial.print("] + z^-1 [");
 					Serial.print(PID_NumTaps[1]);
 					Serial.print("] + z^0 [");
 					Serial.print(PID_NumTaps[2]);
-					Serial.print("]");
+					Serial.println("]");
 
 					CPVector::vector<double> PID_DenTaps;
 
