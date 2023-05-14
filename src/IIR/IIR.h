@@ -146,8 +146,6 @@
 						DataIndex = (CoefficientIndex + _InputIndex + 1 ) % Len;
 
 						_OutputBuffer[_OutputIndex] += _InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex];
-						Serial.print(_InputBuffer[DataIndex] * _NumCoefficients[CoefficientIndex]);
-						Serial.print(", ");
 
 					}
 
