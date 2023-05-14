@@ -179,9 +179,9 @@
 
 					PID_NumTaps.resize(3);
 
-					PID_NumTaps[0] = -_Kd;
-					PID_NumTaps[1] = _Kp-_Ki+(2*_Kd);
-					PID_NumTaps[2] = -_Kp-_Kd;
+					PID_NumTaps[0] = _Kd;
+					PID_NumTaps[1] = -_Kp+_Ki-(2*_Kd);
+					PID_NumTaps[2] = _Kp+_Kd;
 
 					CPVector::vector<double> PID_DenTaps;
 
