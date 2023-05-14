@@ -182,6 +182,13 @@
 					PID_NumTaps[0] = -_Kd;
 					PID_NumTaps[1] = _Kp-_Ki+(2*_Kd);
 					PID_NumTaps[2] = -_Kp-_Kd;
+					
+					CPVector::vector<double> PID_DenTaps;
+
+					PID_DenTaps.resize(2);
+
+					PID_DenTaps[0] = 1;
+					PID_DenTaps[1] = -1;
 
 					Serial.println();
 					Serial.print("Kp = ");
@@ -214,12 +221,6 @@
 					Serial.print(PID_DenTaps[1]);
 					Serial.println("]");
 
-					CPVector::vector<double> PID_DenTaps;
-
-					PID_DenTaps.resize(2);
-
-					PID_DenTaps[0] = 1;
-					PID_DenTaps[1] = -1;
 
  		 			_Filter.SetCoefficients(PID_NumTaps,PID_DenTaps);
 	    		}
