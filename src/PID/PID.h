@@ -206,6 +206,14 @@
 					Serial.print(PID_NumTaps[2]);
 					Serial.println("]");
 
+					Serial.println("-----------------------------------------------");
+
+					Serial.print("z^-1 [");
+					Serial.print(PID_DenTaps[0]);
+					Serial.print("] + z^0 [");
+					Serial.print(PID_DenTaps[1]);
+					Serial.println("]");
+
 					CPVector::vector<double> PID_DenTaps;
 
 					PID_DenTaps.resize(2);
