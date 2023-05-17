@@ -1,8 +1,14 @@
+/**
+ * @file PID.h
+ * @brief Infinite Impulse Response Class
+ */
 #ifndef PID_CONTROLLER_H
 #define PID_CONTROLLER_H
 	
 	#include <DiscreteControllers_BuildSettings.h>
 	#include "../IIR/IIR.h"
+	
+
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
@@ -55,7 +61,10 @@
  	
  	namespace DiscreteControllers
     {
-
+    	/**
+		 * @brief Discrete PID Class
+		 * @parameter DataType Data type to be used as input and output signals
+		 */
         template <class DataType>
         class  PID
         {	

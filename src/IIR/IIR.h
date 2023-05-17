@@ -79,7 +79,6 @@
 		 * @endcode
 		 * @tparam DataType Data type to be used as input and output signals
 		 */
-
 		template<class DataType>
 		class IIR
 		{
@@ -139,7 +138,7 @@
 
 				/**
 				 * @brief Returns the numerator coefficients:
-				 * NumCoeffs = \f$ \left[ b_0, b_1, \cdots , b_P \right] \f$, and: 
+				 * NumCoeffs = \f$ \left[ b_0, b_1, \cdots , b_P \right] \f$ 
 				 * @return A reference to the vector storing the numerator coefficients
 				 */
 				const CPVector::vector<double>& NumCoefficients()
