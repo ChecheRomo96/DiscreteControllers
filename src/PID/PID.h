@@ -382,8 +382,6 @@
 						default: return;
 					}
 
-					
-
  		 			_Filter.SetCoefficients(PID_NumTaps,PID_DenTaps);
 	    		}
 
