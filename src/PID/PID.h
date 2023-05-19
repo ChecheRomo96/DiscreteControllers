@@ -246,7 +246,7 @@
 	        	 */
 	    		const double Kp() const
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: return _Kp; 
 						case DiscretizationMode_BLT: return _Kp; 
@@ -261,7 +261,7 @@
 	        	 */
 	    		void SetKp(double Kp, bool UpdateTaps = 0)
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: _Kp = Kp; break;
 						case DiscretizationMode_BLT: _Kp = Kp; break;
@@ -277,7 +277,7 @@
 	        	 */
 	    		const double Ki() const
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: return _Ki * Fs(); 
 						case DiscretizationMode_BLT: return _Ki * (2*Fs()); 
@@ -292,7 +292,7 @@
 	        	 */
 	    		void SetKi(double Ki, bool UpdateTaps = 0)
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: _Ki = Ki / Fs(); break;
 						case DiscretizationMode_BLT: _Ki = Ki / (2.0 * Fs()); break;
@@ -308,7 +308,7 @@
 	        	 */
 	    		const double Kd() const
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: return _Kd / Fs(); 
 						case DiscretizationMode_BLT: return _Kd / (2*Fs());
@@ -323,7 +323,7 @@
 	        	 */
 	    		void SetKd(double Kd, bool UpdateTaps = 0)
 	    		{
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE: _Kd = Kd * Fs(); break;
 						case DiscretizationMode_BLT: _Kd = 2 * Kd * Fs(); break;
@@ -346,7 +346,7 @@
 					CPVector::vector<double> PID_NumTaps;
 					CPVector::vector<double> PID_DenTaps;
 
-					switch(DiscretizationMode)
+					switch(_DiscretizationMode)
 					{
 						case DiscretizationMode_BE:
 							PID_NumTaps.resize(3);
