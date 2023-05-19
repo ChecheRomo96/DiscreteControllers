@@ -117,7 +117,7 @@
 	        	 */
 	        	PID()
 	        	{
-	        		_DiscretizationMode = Discretization_BE;
+	        		_DiscretizationMode = DiscretizationMode_BE;
 
 	        		_Kp = 0;
 	        		_Ki = 0;
@@ -134,7 +134,7 @@
 	        	 */
 	    		PID(double Kp, double Ki, double Kd, double Ts)
 	    		{
-	        		_DiscretizationMode = Discretization_BE;
+	        		_DiscretizationMode = DiscretizationMode_BE;
 
 	    			SetSamplingPeriod(Ts, 0);
 	    			SetGains(Kp, Ki, Kd, 0);
