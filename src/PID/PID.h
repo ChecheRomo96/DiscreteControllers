@@ -248,8 +248,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: return _Kp; 
-						case Discretization_BLT: return _Kp; 
+						case DiscretizationMode_BE: return _Kp; 
+						case DiscretizationMode_BLT: return _Kp; 
 						default: return 0;
 					}
 	    		}
@@ -263,8 +263,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: _Kp = Kp; break;
-						case Discretization_BLT: _Kp = Kp; break;
+						case DiscretizationMode_BE: _Kp = Kp; break;
+						case DiscretizationMode_BLT: _Kp = Kp; break;
 						default: return;
 					}
 
@@ -279,8 +279,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: return _Ki * Fs(); 
-						case Discretization_BLT: return _Ki * (2*Fs()); 
+						case DiscretizationMode_BE: return _Ki * Fs(); 
+						case DiscretizationMode_BLT: return _Ki * (2*Fs()); 
 						default: return 0;
 					}
 	    		}
@@ -294,8 +294,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: _Ki = Ki / Fs(); break;
-						case Discretization_BLT: _Ki = Ki / (2.0 * Fs()); break;
+						case DiscretizationMode_BE: _Ki = Ki / Fs(); break;
+						case DiscretizationMode_BLT: _Ki = Ki / (2.0 * Fs()); break;
 						default: return;
 					}
 
@@ -310,8 +310,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: return _Kd / Fs(); 
-						case Discretization_BLT: return _Kd / (2*Fs());
+						case DiscretizationMode_BE: return _Kd / Fs(); 
+						case DiscretizationMode_BLT: return _Kd / (2*Fs());
 						default: return;
 					}
 	    		}
@@ -325,8 +325,8 @@
 	    		{
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE: _Kd = Kd * Fs(); break;
-						case Discretization_BLT: _Kd = 2 * Kd * Fs(); break;
+						case DiscretizationMode_BE: _Kd = Kd * Fs(); break;
+						case DiscretizationMode_BLT: _Kd = 2 * Kd * Fs(); break;
 						default: return;
 					}
 
@@ -347,7 +347,7 @@
 
 					switch(DiscretizationMode)
 					{
-						case Discretization_BE:
+						case DiscretizationMode_BE:
 							PID_NumTaps.resize(3);
 
 							PID_NumTaps[0] = _Kp+_Ki+_Kd;
@@ -363,7 +363,7 @@
 							PID_DenTaps[2] = 0;
 						break;
 
-						case Discretization_BLT:
+						case DiscretizationMode_BLT:
 							PID_NumTaps.resize(3);
 
 							PID_NumTaps[0] = _Kp+_Ki+_Kd;
