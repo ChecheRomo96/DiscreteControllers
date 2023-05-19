@@ -344,6 +344,7 @@
 	    		void RecalculateTaps()
 	    		{
 					CPVector::vector<double> PID_NumTaps;
+					CPVector::vector<double> PID_DenTaps;
 
 					switch(DiscretizationMode)
 					{
@@ -353,8 +354,6 @@
 							PID_NumTaps[0] = _Kp+_Ki+_Kd;
 							PID_NumTaps[1] = -_Kp-(2*_Kd);
 							PID_NumTaps[2] = _Kd;
-
-							CPVector::vector<double> PID_DenTaps;
 
 							PID_DenTaps.resize(3);
 
@@ -369,8 +368,6 @@
 							PID_NumTaps[0] = _Kp+_Ki+_Kd;
 							PID_NumTaps[1] = (2*_Ki)-(2*_Kd);
 							PID_NumTaps[2] = -_Kp+_Ki+_Kd;
-
-							CPVector::vector<double> PID_DenTaps;
 
 							PID_DenTaps.resize(3);
 
