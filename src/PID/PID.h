@@ -228,7 +228,7 @@
 
 	        	/**
 	        	 * @brief Set the expected sampling frequency of the input signal.
-	        	 * @param Ts Sampling frequency in Hz
+	        	 * @param Fs Sampling frequency in Hz
 	        	 * @param UpdateTaps 1 to update the transfer function, 0 to not
 	        	 */
 	    		void SetSamplingFrequency(double Fs, bool UpdateTaps = 0)
@@ -337,9 +337,7 @@
 	        	/**
 	        	 * @brief Recalculates the transfer function coefficients.
 	        	 *
-	        	 * Recalculates the transfer function coefficients based on the parameters (\f$\displaymodeK_p\f$,\f$\displaymodeK_i\f$,\f$\displaymodeK_d\f$,\f$\displaymodeTs\f$) and the selected discretization mode.
-	        	 * @param Kd Derivative gain.
-	        	 * @param UpdateTaps 1 to update the transfer function, 0 to not
+	        	 * Recalculates the transfer function coefficients based on the parameters (\f$ K_p \f$,\f$ K_i \f$, \f$ K_d \f$,\f$ Ts \f$) and the selected discretization mode.
 	        	 */
 	    		void RecalculateTaps()
 	    		{
@@ -393,7 +391,7 @@
 
 				/**
 				 * @brief Recieves a new data point and calculates the transfer function output using the stored data.
-				 * @param NewData Numerical value of the error signal.
+				 * @param ErrorSignal Numerical value of the error signal.
 				 * @return Numerical value of the control signal
 				 */
 	    		DataType Update(DataType ErrorSignal)

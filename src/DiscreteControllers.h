@@ -15,8 +15,7 @@
   * @brief Brief
   * @version 0.1
   * @date 15/05/2023
-  * @author JoseRomo
-  * @title Discrete Controllers
+  * @author José Manuel Romo Peredo
   */
 
 #include "DiscreteControllers_BuildSettings.h"                                                                                      
