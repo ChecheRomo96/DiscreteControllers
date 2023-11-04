@@ -241,7 +241,7 @@
 
 					// y[n] =  (1/a0) ( b_i * in[n-i] + a_j * out[n-j] )
 
-					uint8_t DataIndex, CoefficientIndex;
+					uint8_t DataIndex;
 					uint8_t Len = _NumCoefficients.size();
 
 					for(uint8_t CoefficientIndex = 0; CoefficientIndex < Len; CoefficientIndex++)
