@@ -1,0 +1,3 @@
+[submodule "libs/CPSTL"]
+	path = libs/CPSTL
+	url = https://github.com/ChecheRomo96/CPSTL.git
