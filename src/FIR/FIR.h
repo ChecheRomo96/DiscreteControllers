@@ -2,7 +2,7 @@
 #define DISCRETE_CONTROLLERS_FIR_H                                  
 
 	#include <DiscreteControllers_BuildSettings.h>
-	#include <CPVector.h>
+	#include <CPvector.h>
 
 	namespace DiscreteControllers
 	{
@@ -11,8 +11,8 @@
 		{
 			private:
 		
-				CPVector::vector<double> _Coefficients;
-				CPVector::vector<DataType> _DataBuffer;
+				cpstd::vector<double> _Coefficients;
+				cpstd::vector<DataType> _DataBuffer;
 				uint8_t _DataIndex;
 				DataType _ProccesedData;
 
@@ -23,7 +23,7 @@
 					_ProccesedData = 0;
 				}
 
-				FIR(const CPVector::vector<double>& Coefficients)
+				FIR(const cpstd::vector<double>& Coefficients)
 				{
 					uint8_t _DataIndex;
 					DataType _ProccesedData;
@@ -39,12 +39,12 @@
 					return (*this);
 				}
 
-				const CPVector::vector<double>& Coefficients()
+				const cpstd::vector<double>& Coefficients()
 				{
 					return _Coefficients;
 				}
 
-				void SetCoefficients(const CPVector::vector<double>& FirCoefficients)
+				void SetCoefficients(const cpstd::vector<double>& FirCoefficients)
 				{
 					_Coefficients = FirCoefficients;
 
@@ -59,7 +59,7 @@
 							_DataBuffer[i] = 0.0000;
 						}
 
-						CPVector::vector<DataType> tmp;
+						cpstd::vector<DataType> tmp;
 						tmp.resize(_DataIndex);
 
 						for(uint8_t i = 0; i < _DataIndex; i++)
@@ -93,7 +93,7 @@
 					}
 				}
 
-				const CPVector::vector<DataType>& DataBuffer()
+				const cpstd::vector<DataType>& DataBuffer()
 				{
 					return _DataBuffer;
 				}
@@ -136,7 +136,7 @@
 					return _ProccesedData;
 				}
 
-				CPVector::vector<DataType>& ProcessBuffer(const CPVector::vector<DataType>& DataIn, CPVector::vector<DataType>& DataOut)
+				cpstd::vector<DataType>& ProcessBuffer(const cpstd::vector<DataType>& DataIn, cpstd::vector<DataType>& DataOut)
 				{
 					DataOut.resize(DataIn.size());
 					InitializeBuffer();

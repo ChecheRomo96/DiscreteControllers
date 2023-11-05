@@ -7,7 +7,7 @@
 #define DISCRETE_CONTROLLERS_IIR_H                                  
 
 	#include <DiscreteControllers_BuildSettings.h>
-	#include <CPVector.h>
+	#include <CPvector.h>
 
 	namespace DiscreteControllers
 	{
@@ -62,11 +62,11 @@
 		 * {
 		 *     DiscreteControllers::IIR<float> myIIR;
 		 *     
-		 *     CPVector::vector<double> NumCoeffs;
+		 *     cpstd::vector<double> NumCoeffs;
 		 *     NumCoeffs.resize(1);
 		 *     NumCoeffs[0] = 0.0198;
 		 *
-		 *     CPVector::vector<double> DenCoeffs;
+		 *     cpstd::vector<double> DenCoeffs;
 		 *     DenCoeffs.resize(2);
 		 *     DenCoeffs[0] = 1;
 		 *     DenCoeffs[1] = -0.9802;
@@ -84,10 +84,10 @@
 		{
 			private:
 		
-				CPVector::vector<double> _NumCoefficients;
-				CPVector::vector<double> _DenCoefficients;
-				CPVector::vector<DataType> _InputBuffer;
-				CPVector::vector<DataType> _OutputBuffer;
+				cpstd::vector<double> _NumCoefficients;
+				cpstd::vector<double> _DenCoefficients;
+				cpstd::vector<DataType> _InputBuffer;
+				cpstd::vector<DataType> _OutputBuffer;
 				uint8_t _InputIndex;
 				uint8_t _OutputIndex;
 
@@ -115,7 +115,7 @@
 				 * @param NumCoeffs Numerator coefficients of the discrete transfer function. Expects a vector containing the 
 				 * @param DenCoeffs Denominator coefficients of the discrete transfer function. 
 				 */
-				IIR(const CPVector::vector<double>& NumCoeffs, const CPVector::vector<double>& DenCoeffs)
+				IIR(const cpstd::vector<double>& NumCoeffs, const cpstd::vector<double>& DenCoeffs)
 				{
 					SetCoefficients(NumCoeffs, DenCoeffs);
 				}
@@ -141,7 +141,7 @@
 				 * NumCoeffs = \f$ \left[ b_0, b_1, \cdots , b_P \right] \f$ 
 				 * @return A reference to the vector storing the numerator coefficients
 				 */
-				const CPVector::vector<double>& NumCoefficients()
+				const cpstd::vector<double>& NumCoefficients()
 				{
 					return _NumCoefficients;
 				}
@@ -151,7 +151,7 @@
 				 * DenCoeffs = \f$ \left[ a_0, a_1, \cdots , a_Q \right] \f$
 				 * @return A reference to the vector storing the denominator coefficients
 				 */
-				const CPVector::vector<double>& DenCoefficients()
+				const cpstd::vector<double>& DenCoefficients()
 				{
 					return _DenCoefficients;
 				}
@@ -163,7 +163,7 @@
 				 * NumCoeffs = \f$ \left[ b_0, b_1, \cdots , b_P \right] \f$, and: 
 				 * DenCoeffs = \f$ \left[ a_0, a_1, \cdots , a_Q \right] \f$
 				 */
-				void SetCoefficients(const CPVector::vector<double>& Num, const CPVector::vector<double>& Den)
+				void SetCoefficients(const cpstd::vector<double>& Num, const cpstd::vector<double>& Den)
 				{
 					_NumCoefficients = Num;
 					_DenCoefficients = Den;

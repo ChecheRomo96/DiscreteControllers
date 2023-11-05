@@ -1,0 +1,2 @@
+add_executable( DiscreteControllers_1_BuildConfiguration main.cpp ) 
+target_link_libraries( DiscreteControllers_1_BuildConfiguration PUBLIC DiscreteControllers )
