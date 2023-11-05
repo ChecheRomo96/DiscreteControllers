@@ -1,5 +1,6 @@
 #include <DiscreteControllers.h>
-#include <CPVector.h>
+#include <CPvector.h>
+#include <CPstring.h>
 
 //////////////////////////////////////////////////////////////////
 //
@@ -104,10 +105,10 @@ int main(){
           switch (Counter)
           {
           case 0: std::cout << (cpstd::to_string(t) + ", "); break;
-          case 1: std::cout << (String(SetPoint) + ", "); break;
-          case 2: std::cout << (String(ControllerOutput) + ", "); break;
-          case 3: std::cout << (String(SystemResponse) + ", "); break;
-          case 4: std::cout << (String(Error) + ", "); break;
+          case 1: std::cout << (cpstd::to_string(SetPoint) + ", "); break;
+          case 2: std::cout << (cpstd::to_string(ControllerOutput) + ", "); break;
+          case 3: std::cout << (cpstd::to_string(SystemResponse) + ", "); break;
+          case 4: std::cout << (cpstd::to_string(Error) + ", "); break;
           }
       }
       std::cout << ("];") << std::endl;
