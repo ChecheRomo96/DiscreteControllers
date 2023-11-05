@@ -341,8 +341,8 @@
 	        	 */
 	    		void RecalculateTaps()
 	    		{
-					CPVector::vector<double> PID_NumTaps;
-					CPVector::vector<double> PID_DenTaps;
+					cpstd::vector<double> PID_NumTaps;
+					cpstd::vector<double> PID_DenTaps;
 
 					switch(_DiscretizationMode)
 					{
