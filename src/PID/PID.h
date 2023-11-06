@@ -49,7 +49,7 @@
 		 * \f$ \displaystyle K_d' = \frac{K_d}{Ts} \f$\n\n
 		 * @tparam DataType Data type to be used as input and output signals
 		 */
-        template <class DataType>
+        template <typename InputType, typename OutputType>
         class  PID
         {	
 	        public: 
@@ -96,7 +96,7 @@
 	        	static constexpr uint8_t DiscretizationMode_Invalid = 2;
 
 	        private:
-	        	IIR<DataType> _Filter;
+	        	IIR<InputType, OutputType, double> _Filter;
 	        
 	    		double _Kp;
 	    		double _Ki;
@@ -115,8 +115,7 @@
 	        	 * Initializes \f$ K_p \f$, \f$ K_i \f$, and \f$ K_d \f$ to 0. 
 	        	 * Discretization Mode initialized to Backward Euler (PID::DiscretizationMode_BE).
 	        	 */
-	        	PID()
-	        	{
+	        	PID(){
 	        		_DiscretizationMode = DiscretizationMode_BE;
 
 	        		_Kp = 0;
@@ -394,7 +393,7 @@
 				 * @param ErrorSignal Numerical value of the error signal.
 				 * @return Numerical value of the control signal
 				 */
-	    		DataType Update(DataType ErrorSignal)
+	    		OutputType& Update(const InputType& ErrorSignal)
 	    		{
 	    			return _Filter.Update(ErrorSignal);
 	    		}

@@ -8,18 +8,22 @@
 // In this case the plant represents a DC motor, whose 
 // Discrete Transfer function can be estimated as:
 // 
-//          z^-1 (26.700957475450720)               fs = 100 Hz
-// H(z) =  -----------------------------      @ 
-//          z^-1 (-0.778800783071405) + 1           Ts = 0.01 s
+////////////////////////////////////////////////////////////////// 
+// Positive Pole Representation [MATLAB output with tf(num, den)]
+//          z^1(0) + z^0(26.700957475450720)          fs = 100 Hz
+// H(z) =  ----------------------------------      @ 
+//          z^1(1) + z^0(-0.778800783071405)          Ts = 0.01 s
+//
+////////////////////////////////////////////////////////////////// 
+// Negative Pole Representation [Direct Proggraming 
+//          z^0(0) + z^-1(26.700957475450720)         fs = 100 Hz
+// H(z) =  -------------------------------------   @ 
+//          z^0(1) + z^-1(-0.778800783071405)         Ts = 0.01 s
 //
 ////////////////////////////////////////////////////////////////// 
 
 
-DiscreteControllers::IIR<float> Motor(
-    cpstd::vector<double>({ 26.700957475450720, 0 }),
-    cpstd::vector<double>({ -0.778800783071405, 1 }) );
-
-
+DiscreteControllers::IIR<float, float> Motor({26.700957475450720 }, {1, -0.778800783071405 } );
 
 float StartTime = 0;
 float EndTime = 10;
@@ -30,16 +34,12 @@ float Ts = 1.0 / Fs;
 float PulseTime1 = 1;
 float PulseTime2 = 4;
 float PulseTime3 = 7;
-float PulseAmplitude1 = 60;
-float PulseAmplitude2 = 120;
-float PulseAmplitude3 = -120;
+float PulseAmplitude1 = 0.5;
+float PulseAmplitude2 = 1;
+float PulseAmplitude3 = -1;
 
 
 int main(){
-
-  Motor.SetCoefficients(
-      cpstd::vector<double>({ 26.700957475450720, 0 }),
-      cpstd::vector<double>({ -0.778800783071405, 1 }));
 
   // Tiempo de Establecimiento 1s
   float Kp = 0.000138369466218086;
@@ -51,7 +51,7 @@ int main(){
   //float Ki = 0.00628745283932935;
   //float Kd = 0;
   
-  DiscreteControllers::IIR<float> PID;
+  DiscreteControllers::IIR<float, float, double> PID;
 
   // Función de Transferencia de las diapositivas del curso
   
@@ -59,10 +59,9 @@ int main(){
   double b = Ki;
   double c = Kd;
   
-  double PID_NTaps[] = {c, -(a)-(2*c), a+b+c};
-  double PID_DTaps[] = {-1, 1};
+  double PID_DTaps[] = {1, -1};
 
-  cpstd::vector<double> PID_NumTaps(PID_NTaps,3);
+  cpstd::vector<double> PID_NumTaps = { a + b + c, -(a)-(2 * c), c };
   cpstd::vector<double> PID_DenTaps(PID_DTaps,2);
   PID.SetCoefficients(PID_NumTaps,PID_DenTaps);
 
