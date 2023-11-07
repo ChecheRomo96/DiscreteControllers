@@ -35,8 +35,8 @@ float PulseTime1 = 1;
 float PulseTime2 = 4;
 float PulseTime3 = 7;
 float PulseAmplitude1 = 0.5;
-float PulseAmplitude2 = 1;
-float PulseAmplitude3 = -1;
+float PulseAmplitude2 = 120;
+float PulseAmplitude3 = -120;
 
 
 int main(){
@@ -58,14 +58,8 @@ int main(){
   double a = Kp;
   double b = Ki;
   double c = Kd;
-  
-  double PID_DTaps[] = {1, -1};
 
-  cpstd::vector<double> PID_NumTaps = { a + b + c, -(a)-(2 * c), c };
-  cpstd::vector<double> PID_DenTaps(PID_DTaps,2);
-  PID.SetCoefficients(PID_NumTaps,PID_DenTaps);
-
-
+  PID.SetCoefficients({ a + b + c, -(a)-(2 * c), c }, { 1, -1 });
 
   for (uint8_t Counter = 0; Counter < 5; Counter++)
   {
