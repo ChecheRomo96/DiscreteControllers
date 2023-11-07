@@ -283,7 +283,7 @@
 					}
 				}
 
-				void Initialize(const InputType& InValue = InputType(), const OutputType& OutValue = OutputType()){
+				void InitializeBuffers(const InputType& InValue = InputType(), const OutputType& OutValue = OutputType()){
 					InitializeInputBuffer(InValue);
 					InitializeOutputBuffer(OutValue);
 				}
