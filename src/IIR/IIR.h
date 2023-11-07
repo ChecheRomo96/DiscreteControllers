@@ -134,6 +134,7 @@
 					static_assert(cpstd::is_arithmetic<CoefficientType>::value, "CoefficientType must be an arithmetic type");
 					static_assert(cpstd::is_arithmetic<InputType>::value, "InputType must be an arithmetic type");
 					static_assert(cpstd::is_arithmetic<OutputType>::value, "OutputType must be an arithmetic type");
+					
 					_InputIndex = 0;
 					_OutputIndex = 0;
 				}
@@ -280,6 +281,11 @@
 					{
 						_OutputBuffer[i] = Value;
 					}
+				}
+
+				void Initialize(const InputType& InValue = InputType(), const OutputType& OutValue = OutputType()){
+					InitializeInputBuffer(InValue);
+					InitializeOutputBuffer(OutValue);
 				}
 
 				/**
