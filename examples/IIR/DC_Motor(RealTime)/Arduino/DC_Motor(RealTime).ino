@@ -23,12 +23,11 @@
   void setup() {
     Serial.begin(115200);
     
-    Motor.InitializeOutputBuffer();
-    Motor.InitializeInputBuffer();
+    Motor.InitializeBuffers();
   }
 //
 //////////////////////////////////////////////////////////////////////
-// loop
+// Loop
 
   void loop() {
     if(Serial.available()){
