@@ -294,7 +294,7 @@
 				 * @return Numerical value of the output signal
 				 */
 				OutputType Update(const InputType& NewData){
-					if((_DenCoefficients.size() == 0)||(_DenCoefficients.size() == 0)){return OutputType();}
+					if(_DenCoefficients.size() == 0){return OutputType();}
 					// Increase input and output indices
 
 					if(_InputIndex < _InputBuffer.size()-1)

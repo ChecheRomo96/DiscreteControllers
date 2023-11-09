@@ -1,0 +1,2 @@
+add_executable(DiscreteControllers_IIR_DC_Motor_Matlab main.cpp)
+target_link_libraries(DiscreteControllers_IIR_DC_Motor_Matlab DiscreteControllers)
